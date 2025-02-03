@@ -1,0 +1,8 @@
+[package]
+name = "oops_time"
+version = "0.1.0"
+edition = "2021"
+authors = ["KATOI <katoi4423@gmail.com>"]
+
+[dependencies]
+windows = {version = "*",features = ["Win32_UI_WindowsAndMessaging", "Win32_System_Threading", "Win32_System_LibraryLoader"]}
