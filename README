@@ -1,0 +1,4 @@
+# README
+
+This software uses the `windows` crate, which is licensed under the MIT OR Apache-2.0 license.
+See https://github.com/microsoft/windows-rs for details.
