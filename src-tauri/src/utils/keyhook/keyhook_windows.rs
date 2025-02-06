@@ -2,6 +2,13 @@
  * keyboard hook for Windows
  */
 
+use log::{
+	error,
+	info,
+};
+use simplelog::{
+	ColorChoice, Config, LevelFilter, TermLogger, TerminalMode, WriteLogger
+};
 use windows::Win32::{
 	UI::WindowsAndMessaging::{
 		CallNextHookEx,
@@ -20,10 +27,20 @@ use windows::Win32::{
 	},
 	System::LibraryLoader::GetModuleHandleW,
 };
-use std::sync::{
-	Mutex,
-	OnceLock,
+use std::{
+	fs::File,
+	sync::{
+		Mutex,
+		OnceLock,
+	},
 };
+
+pub fn init_logger()
+{
+	let log_file = File::create("oopstime.log").expect("Failed to create log file.");
+	WriteLogger::init(LevelFilter::Info, Config::default(), log_file).expect("Failed to initialize logger");
+	info!("Logger initialized successfully");
+}
 
 
 // `HHOOK` を `Send` にするためのラッパー型
@@ -43,6 +60,7 @@ unsafe extern "system" fn keyboard_proc(n_code: i32, w_param: WPARAM, l_param: L
 
 		if w_param == WPARAM(WM_KEYDOWN as usize) {
 			println!("Key pressed: {}", kb_data.vkCode);
+			info!("Key pressed: {}", kb_data.vkCode);
 		}
 	}
 
