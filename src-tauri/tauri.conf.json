@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "oopstime",
+  "productName": "OopsTime",
   "version": "0.1.0",
   "identifier": "com.oopstime.app",
   "build": {
@@ -10,7 +10,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "oopstime",
+        "title": "OopsTime",
         "width": 800,
         "height": 600
       }
@@ -29,5 +29,8 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ]
+  },
+  "plugins": {
+    "notification": {}
   }
 }

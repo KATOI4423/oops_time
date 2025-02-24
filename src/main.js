@@ -16,3 +16,16 @@ window.addEventListener("DOMContentLoaded", () => {
     greet();
   });
 });
+
+document.getElementById("notify").addEventListener("click", async () =>
+{
+	const title = document.getElementById("title").value || "Notification";
+	const body  = document.getElementById("body").value  || "Test Notification";
+
+	try {
+		await invoke("notify", {title, body});
+		console.log("Sent notification.");
+	} catch (e) {
+		console.error("Failed to send notification:", e);
+	}
+});
