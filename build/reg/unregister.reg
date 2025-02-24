@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\Applications\OopsTime.exe]
+
+[-HKEY_CURRENT_USER\Software\Classes\AppUserModelId\com.oopstime.app]
+
+[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\OopsTime]

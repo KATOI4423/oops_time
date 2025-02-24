@@ -2,20 +2,6 @@
 # Makefile for cargo #
 ######################
 
-# Directory
-TOP_DIR := $(shell pwd)
-
-# Source Directory
-SRC_DIR := ${TOP_DIR}/src
-TAURI_DIR := ${TOP_DIR}/src-tauri
-
-# Build Directory
-BUILD_DIR := ${TOP_DIR}/build
-BUILD_LINUX_DIR := ${BUILD_DIR}/release
-BUILD_WINDOWS_DIR := ${BUILD_DIR}/x86_64-pc-windows-gnu/release
-
-$(shell mkdir -p ${BUILD_DIR})
-
 .PHONY: all
 all: linux windows
 
@@ -28,7 +14,8 @@ dist-clean:
 
 .PHONY: linux
 linux:
-	@cargo tauri build -- --target-dir ${BUILD_DIR}
+	@cd ${TOP_DIR} \
+	&& cargo tauri build -- --target-dir ${BUILD_DIR}
 
 .PHONY: linux-clean
 linux-clean:
@@ -36,9 +23,22 @@ linux-clean:
 
 .PHONY: windows
 windows:
-	@. ./setenv_windows.sh \
+	@cd ${TOP_DIR} \
+	&& . ${BUILD_DIR}/windows_env.sh \
 	&& cargo tauri build --target x86_64-pc-windows-gnu -- --target-dir ${BUILD_DIR}
 
 .PHONY: windows-clean
 windows-clean:
 	rm -rf ${BUILD_WINDOWS_DIR}
+
+REGFILE := "${BUILD_REG_DIR}/register.reg"
+UNREGFILE := "${BUILD_REG_DIR}/unregister.reg"
+
+.PHONY: reg
+reg:
+	@mkdir -p ${BUILD_REG_DIR}
+	@./mkreg.sh ${REGFILE} ${UNREGFILE}
+
+.PHONY: reg-clean
+reg-clean:
+	@-rm ${REGFILE} ${UNREGFILE}
