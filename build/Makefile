@@ -3,7 +3,7 @@
 ######################
 
 .PHONY: all
-all: linux windows
+all: windows
 
 .PHONY: clean
 clean: linux-clean windows-clean
