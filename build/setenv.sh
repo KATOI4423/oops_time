@@ -11,7 +11,7 @@ export TAURI_DIR="${TOP_DIR}/src-tauri"
 export BUILD_DIR="${TOP_DIR}/build"
 export BUILD_LINUX_DIR="${BUILD_DIR}/release"
 export BUILD_WINDOWS_DIR="${BUILD_DIR}/x86_64-pc-windows-gnu/release"
-export BUILD_REG_DIR="${BUILD_DIR}/reg"
+export BUILD_REG_DIR="${BUILD_WINDOWS_DIR}/reg"
 
 # Setting
 export APPNAME=$(awk '

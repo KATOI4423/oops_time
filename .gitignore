@@ -4,7 +4,7 @@ build/*
 !build/Makefile
 !build/setenv*
 !build/mk*.sh
-!build/reg
+!build/x86_64-pc-windows-gnu/release/reg/*
 !build/windows_env.sh
 
 src-tauri/Cargo.lock

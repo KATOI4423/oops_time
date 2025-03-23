@@ -5,7 +5,7 @@ Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Software\Classes\AppUserModelId\com.oopstime.app]
 "DisplayName"="OopsTime"
-"ToastActivatorCLSID"="{ef3e018f-416b-49ef-8457-5941b05a60b4}"
+"ToastActivatorCLSID"="{e523c584-d564-487b-b09b-e432de1a532e}"
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\OopsTime]
 "Enabled"=dword:00000001
