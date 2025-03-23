@@ -23,7 +23,7 @@ document.getElementById("notify").addEventListener("click", async () =>
 	const body  = document.getElementById("body").value  || "Test Notification";
 
 	try {
-		await invoke("notify", {title, body});
+		await invoke("send_notify", {title, body});
 		console.log("Sent notification.");
 	} catch (e) {
 		console.error("Failed to send notification:", e);
