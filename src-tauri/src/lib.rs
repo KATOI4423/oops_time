@@ -12,7 +12,7 @@ fn greet(name: &str) -> String {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-	keyhook::keyhook_windows::init_logger();
+	keyhook::init_logger();
 
 	tauri::Builder::default()
 		.setup(|_app| {
