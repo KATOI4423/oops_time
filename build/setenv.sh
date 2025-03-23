@@ -34,6 +34,6 @@ export VERSION=$(awk '
 	}
 ' "${TAURI_DIR}/Cargo.toml")
 
-export AUMID="com.oopstime.app"
+export AUMID=$(awk -F ' = ' '/^aumid/ {gsub(/"/, "", $2); print $2}' < "${TAURI_DIR}/Cargo.toml")
 
 export PS1="${APPNAME}:${PS1}"

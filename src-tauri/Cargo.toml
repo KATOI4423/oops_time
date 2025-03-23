@@ -6,6 +6,9 @@ authors = ["KATOI <katoi4423@gmail.com"]
 edition = "2021"
 license = "MIT OR Apache-2.0"
 
+[package.metadata]
+aumid = "com.oopstime.app"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
