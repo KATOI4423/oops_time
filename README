@@ -1,4 +1,11 @@
 # README
 
-This software uses the `windows` crate, which is licensed under the MIT OR Apache-2.0 license.
-See https://github.com/microsoft/windows-rs for details.
+## OopsTime
+
+OopsTime is an application that encourages breaks based on the typing error rate.
+
+## License
+
+For detailed license information, please refer to the License.html file.
+
+This README directs users to the License.html file for detailed license information. You can modify or expand this as needed.
