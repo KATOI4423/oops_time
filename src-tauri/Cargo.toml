@@ -2,7 +2,7 @@
 name = "OopsTime"
 version = "0.1.0"
 description = "A Tauri App"
-authors = ["KATOI <katoi4423@gmail.com"]
+authors = ["KATOI <katoi4423@gmail.com>"]
 edition = "2021"
 
 [package.metadata]
