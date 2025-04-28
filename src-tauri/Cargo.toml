@@ -18,8 +18,8 @@ name = "oopstime_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-cargo_metadata = { version = "*" }
-tauri-build = { version = "2.1.1", features = [] }
+cargo_metadata = { version = "0.19.2" }
+tauri-build = { version = "2.2.0", features = [] }
 
 [dependencies]
 anyhow = { version = "1.0.98" }
@@ -41,4 +41,4 @@ windows = {version = "0.61.1", features = [
 	"Win32_UI_WindowsAndMessaging",
 ] }
 windows-core = { version = "0.61.0" }
-winrt-toast = { version = "*" }
+winrt-toast = { version = "0.1.1" }
