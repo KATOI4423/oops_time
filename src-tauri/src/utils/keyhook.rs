@@ -364,13 +364,13 @@ pub fn init_keyhook() {
         regist_key_daemon(rx);
     });
 
-    thread::spawn(|_| {
+    thread::spawn(|| {
         // 別スレッドでキーフックの処理を行う
         debug!("run set keyboard hook on {:?}", thread::current().id());
         set_keyboard_hook();
     });
 
-    thread::spawn(|_| {
+    thread::spawn(|| {
         // 別スレッドミスタイプ率を監視
         debug!(
             "run mistype rate monitor daemon on {:?}",
