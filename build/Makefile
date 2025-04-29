@@ -3,7 +3,7 @@
 ######################
 
 .PHONY: all
-all: windows
+all: windows license
 
 .PHONY: clean
 clean: linux-clean windows-clean
@@ -13,7 +13,7 @@ dist-clean:
 	rm -rf ${BUILD_DIR}/*
 
 .PHONY: linux
-linux: license
+linux:
 	@cd ${TOP_DIR} \
 	&& cargo tauri build -- --target-dir ${BUILD_DIR}
 
@@ -22,7 +22,7 @@ linux-clean:
 	rm -rf ${BUILD_LINUX_DIR}
 
 .PHONY: windows
-windows: license
+windows:
 	@cd ${TOP_DIR} \
 	&& . ${BUILD_DIR}/windows_env.sh \
 	&& cargo tauri build --target x86_64-pc-windows-gnu -- --target-dir ${BUILD_DIR}
