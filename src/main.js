@@ -1,31 +1,38 @@
 const { invoke } = window.__TAURI__.core;
 
-let greetInputEl;
-let greetMsgEl;
+// メニューバーをクリックした時に、ページを切り替える処理を追加する
+document.addEventListener("DOMContentLoaded", () =>{
+  const menus = document.querySelectorAll("nav button");
+  const main = document.querySelector("main");
 
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
-}
+  // mainを更新する関数
+  async function loadPage(url) {
+    try {
+      const res = await fetch(url);
+      const html = await res.text();
+      main.innerHTML = html;
+    } catch (err) {
+      main.innerHTML = `<p style="color: red;">ページの読み込みに失敗しました: ${err.status}</p>`;
+    }
+  }
 
-window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
+  // 初期ページ読み込み
+  loadPage("setting.html");
+
+  // ボタンクリック時の処理
+  menus.forEach(item => {
+    item.addEventListener("click", () => {
+      // 既に選択中の場合、何もしない
+      if (item.classList.contains("current"))
+        return;
+
+      // クラスの切り替え
+      menus.forEach(itm => itm.classList.remove("current"));
+      item.classList.add("current");
+
+      // ページ読み込み
+      const page = item.getAttribute("data-page");
+      loadPage(page);
+    });
   });
-});
-
-document.getElementById("notify").addEventListener("click", async () =>
-{
-	const title = document.getElementById("title").value || "Notification";
-	const body  = document.getElementById("body").value  || "Test Notification";
-
-	try {
-		await invoke("send_notify", {title, body});
-		console.log("Sent notification.");
-	} catch (e) {
-		console.error("Failed to send notification:", e);
-	}
 });
