@@ -3,7 +3,7 @@
 ######################
 
 .PHONY: all
-all: windows license
+all: license windows
 
 .PHONY: clean
 clean: linux-clean windows-clean
