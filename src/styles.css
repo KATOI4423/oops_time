@@ -104,7 +104,7 @@ nav button::after {
   display: block;
   content: "";
   position: absolute;
-  bottom: -50%;
+  bottom: 0%;
   left: 50%;
   width: 5px;
   height: 5px;
