@@ -1,9 +1,10 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+mod commands;
 mod utils;
 
 use clap::Parser;
+use commands::notify;
 use utils::keyhook;
-use utils::notify;
 use utils::setting;
 
 #[derive(Parser, Debug)]

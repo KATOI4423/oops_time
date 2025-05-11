@@ -1,7 +1,7 @@
 /**
  * keyboard hook for Windows
  */
-use crate::utils::notify;
+use crate::commands::notify;
 use crate::utils::setting;
 
 use std::{
