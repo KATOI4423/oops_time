@@ -46,4 +46,5 @@ reg-clean:
 .PHONY: license
 license:
 	@cd ${TAURI_DIR} \
-	&& cargo about generate about.hbs > ${TOP_DIR}/License.html
+	&& cargo about generate ${TAURI_DIR}/about.hbs > ${TOP_DIR}/License.html
+	python3 ${BUILD_DIR}/merge_licenses.py ${TOP_DIR}/License.html ${TAURI_DIR}/about.hbs ${TOP_DIR}/License.html
