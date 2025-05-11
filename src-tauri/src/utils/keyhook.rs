@@ -335,7 +335,6 @@ fn mistype_rate_monitor_daemon() {
 
         thread::sleep(Duration::from_secs(interval));
     }
-    info!("Exit mistype rate monitor daemon");
 }
 
 pub fn init_keyhook() {
