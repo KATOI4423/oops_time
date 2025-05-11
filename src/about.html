@@ -5,10 +5,21 @@
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About</title>
-    <script type="module" src="/main.js" defer></script>
+    <script type="module" defer>
+      const { invoke } = window.__TAURI__.core;
+      document.addEventListener("DOMContentLoaded", async () => {
+        const license_div = document.getElementById("license-content");
+        try {
+          const html = await invoke("get_license_html", {});
+          license_div.innerHTML = html;
+        } catch (err) {
+          console.error("Faled to get License.html: ", err);
+        }
+      });
+    </script>
   </head>
 
   <body>
-    <h1>about.html</h1>
+    <div id="license-content"></div>
   </body>
 </html>
