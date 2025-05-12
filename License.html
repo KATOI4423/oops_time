@@ -2,22 +2,19 @@
 
 <head>
     <style>
-        @media (prefers-color-scheme: dark) {
-            body {
-                color: #f6f6f6;
-                background-color: #2f2f2f;
-            }
-            a {
-                color: #77bfb5;
-            }
-        }
-        .container {
+        .license-block {
             font-family: sans-serif;
             max-width: 800px;
             margin: 0 auto;
         }
         .intro {
             text-align: center;
+        }
+        .license {
+          border-top: 1px solid #333;
+          padding-top: 1em;
+          padding-bottom: 1em;
+          margin-top: 1em;
         }
         .licenses-list {
             list-style-type: none;
@@ -26,17 +23,35 @@
         }
         .license-used-by {
             margin-top: -10px;
+            max-height: 40%;
+            overflow-y: auto;
         }
         .license-text {
-            max-height: 200px;
-            overflow-y: scroll;
+            max-height: 40%;
+            overflow-y: auto;
             white-space: pre-wrap;
+        }
+        ul.licenses-overview li,
+        ul.license-used-by li {
+            list-style-type: none;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #333;
+                color: white;
+            }
+            a {
+                color: skyblue;
+            }
+            .license {
+                border-top-color: #ccc;
+            }
         }
     </style>
 </head>
 
 <body>
-    <main class="container">
+    <main class="license-block">
         <div class="intro">
             <h1>Third Party Licenses</h1>
             <p>This page lists the licenses of the projects used in cargo-about.</p>
@@ -142,7 +157,7 @@
                     <li><a href="https://github.com/microsoft/windows-rs">windows_x86_64_msvc 0.52.6</a></li>
                     <li><a href="https://github.com/microsoft/windows-rs">windows_x86_64_msvc 0.53.0</a></li>
                     <li><a href="https://github.com/google/zerocopy">zerocopy 0.8.25</a></li>
-                    <li><a href="https://github.com/clap-rs/clap">clap_builder 4.5.37</a></li>
+                    <li><a href="https://github.com/clap-rs/clap">clap_builder 4.5.38</a></li>
                     <li><a href="https://github.com/clap-rs/clap">clap_derive 4.5.32</a></li>
                     <li><a href="https://github.com/clap-rs/clap">clap_lex 0.7.4</a></li>
                     <li><a href="https://github.com/chippers/serialize-to-javascript">serialize-to-javascript-impl 0.1.1</a></li>
@@ -156,7 +171,7 @@
                     <li><a href="https://github.com/rust-cli/anstyle.git">anstyle-query 1.1.2</a></li>
                     <li><a href="https://github.com/rust-cli/anstyle.git">anstyle-wincon 3.0.7</a></li>
                     <li><a href="https://github.com/rust-cli/anstyle.git">anstyle 1.0.10</a></li>
-                    <li><a href="https://github.com/clap-rs/clap">clap 4.5.37</a></li>
+                    <li><a href="https://github.com/clap-rs/clap">clap 4.5.38</a></li>
                     <li><a href="https://github.com/rust-cli/anstyle.git">colorchoice 1.0.3</a></li>
                     <li><a href="https://github.com/srijs/rust-crc32fast">crc32fast 1.4.2</a></li>
                     <li><a href="https://github.com/sfackler/foreign-types">foreign-types-macros 0.2.3</a></li>
@@ -166,12 +181,12 @@
                     <li><a href="https://github.com/polyfill-rs/is_terminal_polyfill">is_terminal_polyfill 1.70.1</a></li>
                     <li><a href="https://github.com/sfackler/rust-jni-sys">jni-sys 0.3.0</a></li>
                     <li><a href="https://github.com/toml-rs/toml">serde_spanned 0.6.8</a></li>
-                    <li><a href="https://github.com/toml-rs/toml">toml 0.8.21</a></li>
+                    <li><a href="https://github.com/toml-rs/toml">toml 0.8.22</a></li>
                     <li><a href="https://github.com/toml-rs/toml">toml_datetime 0.6.9</a></li>
                     <li><a href="https://github.com/toml-rs/toml">toml_edit 0.19.15</a></li>
                     <li><a href="https://github.com/toml-rs/toml">toml_edit 0.20.7</a></li>
-                    <li><a href="https://github.com/toml-rs/toml">toml_edit 0.22.25</a></li>
-                    <li><a href="https://github.com/toml-rs/toml">toml_write 0.1.0</a></li>
+                    <li><a href="https://github.com/toml-rs/toml">toml_edit 0.22.26</a></li>
+                    <li><a href="https://github.com/toml-rs/toml">toml_write 0.1.1</a></li>
                     <li><a href="https://github.com/smol-rs/async-broadcast">async-broadcast 0.7.2</a></li>
                     <li><a href="https://github.com/RumovZ/android-tzdata">android-tzdata 0.1.1</a></li>
                     <li><a href="https://github.com/chanced/jsonptr">jsonptr 0.6.3</a></li>
@@ -182,6 +197,7 @@
                     <li><a href="https://github.com/dtolnay/dtoa">dtoa 1.0.10</a></li>
                     <li><a href="https://github.com/dtolnay/dyn-clone">dyn-clone 1.0.19</a></li>
                     <li><a href="https://github.com/dtolnay/erased-serde">erased-serde 0.4.6</a></li>
+                    <li><a href="https://github.com/dtolnay/itoa">itoa 1.0.15</a></li>
                     <li><a href="https://github.com/rust-lang/libc">libc 0.2.172</a></li>
                     <li><a href="https://github.com/illicitonion/num_enum">num_enum 0.7.3</a></li>
                     <li><a href="https://github.com/illicitonion/num_enum">num_enum_derive 0.7.3</a></li>
@@ -373,11 +389,9 @@
                     <li><a href="https://github.com/mmastrac/rust-ctor">ctor 0.2.9</a></li>
                     <li><a href="https://gitlab.com/lib.rs/cargo_toml">cargo_toml 0.22.1</a></li>
                     <li><a href="https://github.com/emk/cesu8-rs">cesu8 1.1.0</a></li>
-                    <li><a href="https://github.com/chronotope/chrono">chrono 0.4.40</a></li>
                     <li><a href="https://gitlab.com/kornelski/dunce">dunce 1.0.5</a></li>
                     <li><a href="https://github.com/cbreeden/fxhash">fxhash 0.2.1</a></li>
                     <li><a href="https://github.com/TedDriggs/ident_case">ident_case 1.0.1</a></li>
-                    <li><a href="https://github.com/dtolnay/itoa">itoa 1.0.15</a></li>
                     <li><a href="https://github.com/reem/rust-mac.git">mac 0.1.1</a></li>
                     <li><a href="https://github.com/rust-windowing/android-ndk-rs">ndk-context 0.1.1</a></li>
                     <li><a href="https://github.com/rust-mobile/ndk">ndk-sys 0.6.0+11769913</a></li>
@@ -424,6 +438,7 @@
                     <li><a href="https://github.com/unicode-rs/unicode-segmentation">unicode-segmentation 1.12.0</a></li>
                     <li><a href="https://github.com/servo/core-foundation-rs">core-graphics 0.24.0</a></li>
                     <li><a href="https://github.com/paholg/typenum">typenum 1.18.0</a></li>
+                    <li><a href="https://github.com/chronotope/chrono">chrono 0.4.41</a></li>
                 </ul>
                 <pre class="license-text">
                                  Apache License
@@ -1069,14 +1084,6 @@ Exhibit B - &quot;Incompatible With Secondary Licenses&quot; Notice
                 <h3 id="Unicode-3.0">Unicode License v3</h3>
                 <h4>Used by:</h4>
                 <ul class="license-used-by">
-                    <li><a href="https://github.com/unicode-org/icu4x">icu_collections 1.5.0</a></li>
-                    <li><a href="https://github.com/unicode-org/icu4x">icu_locid 1.5.0</a></li>
-                    <li><a href="https://github.com/unicode-org/icu4x">icu_locid_transform 1.5.0</a></li>
-                    <li><a href="https://github.com/unicode-org/icu4x">icu_locid_transform_data 1.5.1</a></li>
-                    <li><a href="https://github.com/unicode-org/icu4x">icu_normalizer 1.5.0</a></li>
-                    <li><a href="https://github.com/unicode-org/icu4x">icu_normalizer_data 1.5.1</a></li>
-                    <li><a href="https://github.com/unicode-org/icu4x">icu_properties 1.5.1</a></li>
-                    <li><a href="https://github.com/unicode-org/icu4x">icu_properties_data 1.5.1</a></li>
                     <li><a href="https://github.com/unicode-org/icu4x">icu_provider 1.5.0</a></li>
                     <li><a href="https://github.com/unicode-org/icu4x">icu_provider_macros 1.5.0</a></li>
                     <li><a href="https://github.com/unicode-org/icu4x">litemap 0.7.5</a></li>
@@ -1089,6 +1096,14 @@ Exhibit B - &quot;Incompatible With Secondary Licenses&quot; Notice
                     <li><a href="https://github.com/unicode-org/icu4x">zerofrom 0.1.6</a></li>
                     <li><a href="https://github.com/unicode-org/icu4x">zerovec-derive 0.10.3</a></li>
                     <li><a href="https://github.com/unicode-org/icu4x">zerovec 0.10.4</a></li>
+                    <li><a href="https://github.com/unicode-org/icu4x">icu_collections 1.5.0</a></li>
+                    <li><a href="https://github.com/unicode-org/icu4x">icu_locid 1.5.0</a></li>
+                    <li><a href="https://github.com/unicode-org/icu4x">icu_locid_transform 1.5.0</a></li>
+                    <li><a href="https://github.com/unicode-org/icu4x">icu_locid_transform_data 1.5.1</a></li>
+                    <li><a href="https://github.com/unicode-org/icu4x">icu_normalizer 1.5.0</a></li>
+                    <li><a href="https://github.com/unicode-org/icu4x">icu_normalizer_data 1.5.1</a></li>
+                    <li><a href="https://github.com/unicode-org/icu4x">icu_properties 1.5.1</a></li>
+                    <li><a href="https://github.com/unicode-org/icu4x">icu_properties_data 1.5.1</a></li>
                 </ul>
                 <pre class="license-text">UNICODE LICENSE V3
 COPYRIGHT AND PERMISSION NOTICE
