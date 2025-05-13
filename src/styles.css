@@ -170,6 +170,45 @@ iframe#page-frame {
   justify-content: flex-end;
 }
 
+/* about.html */
+.license-block {
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.intro {
+  text-align: center;
+}
+.license {
+  border-top: 1px solid #ccc;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-top: 1em;
+}
+.licenses-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.license-used-by {
+  margin-top: -10px;
+  max-height: 40%;
+  overflow-y: auto;
+}
+.license-text {
+  max-height: 40%;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+ul.licenses-overview li,
+ul.license-used-by li {
+  list-style-type: none;
+}
+ul.licenses-overview li a,
+ul.license-used-by li a {
+  color: #77bfb5;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color: #f6f6f6;
