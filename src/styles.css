@@ -180,25 +180,32 @@ iframe#page-frame {
   text-align: center;
 }
 .license {
+  max-height: 100vw;
+  display: flex;
+  flex-direction: column;
   border-top: 1px solid #ccc;
   padding-top: 1em;
   padding-bottom: 1em;
   margin-top: 1em;
 }
 .licenses-list {
+  height: 100vw;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 .license-used-by {
   margin-top: -10px;
-  max-height: 40%;
-  overflow-y: auto;
 }
 .license-text {
-  max-height: 40%;
-  overflow-y: auto;
+  flex-grow: 1;
   white-space: pre-wrap;
+}
+.license-used-by,
+.license-text {
+  max-height: 40vw;
+  flex-shrink: 1;
+  overflow-y: auto;
 }
 ul.licenses-overview li,
 ul.license-used-by li {
