@@ -96,6 +96,7 @@ nav {
   padding: 0;
   width: 80%;
   text-align: center;
+  padding-bottom: 2vw;
 }
 nav button {
   all: unset; /* ブラウザのデフォルトスタイルをリセット */
@@ -147,8 +148,9 @@ nav button:active {
 iframe#page-frame {
   flex: 1;
   border: none;
-  width: 100%;
-  height: calc(100% - 50px); /* nav の高さを差し引く */
+  padding-right: 5px;
+  width: calc(100% - 5px);
+  height: calc(100% - 50px - 2vw); /* nav の高さを差し引く */
   display: block;
 }
 
@@ -171,10 +173,11 @@ iframe#page-frame {
 }
 
 /* about.html */
-.license-block {
-  font-family: sans-serif;
+#license-content {
   max-width: 800px;
   margin: 0 auto;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 .intro {
   text-align: center;
