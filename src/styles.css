@@ -5,6 +5,39 @@ html, body {
   overflow: auto;
 }
 
+/* スクロールバー */
+::-webkit-scrollbar {
+  background-color: none;
+  width: 0.7rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 0.7rem;
+}
+::-webkit-scrollbar-button {
+  background-color: #ccc;
+}
+::-webkit-scrollbar-button:single-button {
+  background-color: transparent;
+  display: block;
+  height: 0.7rem;
+  width: 0.7rem;
+}
+::-webkit-scrollbar-button:single-button:vertical:increment {
+               /* 上,     右,    下,    左 */
+  border-width: 0.6rem 0.35rem 0.0rem 0.35rem;
+  border-style: solid;
+  border-color: #ccc transparent transparent transparent;
+}
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0.0rem 0.35rem 0.6rem 0.35rem;
+  border-style: solid;
+  border-color: transparent transparent #ccc transparent;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
 .logo.vanilla:hover {
   filter: drop-shadow(0 0 2em #ffe21c);
 }
