@@ -5,21 +5,45 @@
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About</title>
-    <script type="module" defer>
-      const { invoke } = window.__TAURI__.core;
-      document.addEventListener("DOMContentLoaded", async () => {
-        const license_div = document.getElementById("license-content");
-        try {
-          const html = await invoke("get_license_html", {});
-          license_div.innerHTML = html;
-        } catch (err) {
-          console.error("Faled to get License.html: ", err);
-        }
-      });
-    </script>
   </head>
 
   <body>
-    <div id="license-content"></div>
+    <license-tag>
+      <!-- Licenses.html will be inserted here -->
+    </license-tag>
+
+    <script type="module">
+      const { invoke } = window.__TAURI__.core;
+
+      class LicenseTag extends HTMLElement {
+        constructor() {
+          super();
+          this.attachShadow({ mode: 'open' });
+          this.shadowRoot.innerHTML = `<div id="license-content">Now Loading...</div>`;
+        }
+
+        async connectedCallback() {
+          try {
+            /* Shadow DOMには<link rel="stylesheet">や<style>が届かないため、直接cssを適応させる */
+            const response = await fetch("styles.css");
+            const css = await response.text();
+            const sheet = new CSSStyleSheet();
+            await sheet.replace(css);
+
+            this.shadowRoot.adoptedStyleSheets = [sheet];
+
+            /* ライセンスHTMLを取得して挿入 */
+            const html = await invoke("get_license_html", {});
+            const container = this.shadowRoot.getElementById("license-content");
+            container.innerHTML = html;
+          } catch (err) {
+            this.shadowRoot.innerHTML =
+              `<div style="color:red;">Failed to load license data: ${err}</div>`;
+          }
+        }
+      }
+
+      customElements.define('license-tag', LicenseTag);
+    </script>
   </body>
 </html>
