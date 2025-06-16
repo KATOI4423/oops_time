@@ -3,6 +3,7 @@ mod commands;
 mod utils;
 
 use clap::Parser;
+use commands::info;
 use commands::license;
 use commands::notify;
 use utils::keyhook;
@@ -35,6 +36,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             notify::send_notify,
             license::get_license_html,
+            info::get_authors, info::get_homepage, info::get_license, info::get_version,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

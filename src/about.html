@@ -8,13 +8,75 @@
   </head>
 
   <body>
+    <div class="intro">
+      <h1>Product Information</h1>
+      <p>This page show the information of this product.</p>
+    </div>
+
+    <div class="product-info-table">
+      <table>
+        <tr>
+          <td>Version</td>
+          <td id="version">Loading...</td>
+        </tr>
+        <tr>
+          <td>Author</td>
+          <td id="author">Loading...</td>
+        </tr>
+        <tr>
+          <td>Homepage</td>
+          <td id="homepage">Loading...</td>
+        </tr>
+        <tr>
+          <td>License</td>
+          <td id="license">Loading...</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Script for Product Information table -->
+    <script type="module">
+      document.addEventListener("DOMContentLoaded", async () => {
+        const { invoke } = window.__TAURI__.core;
+
+        const VersionTd   = document.getElementById("version");
+        const AuthorsTd   = document.getElementById("author");
+        const HomePageTd  = document.getElementById("homepage");
+        const LicenseTd   = document.getElementById("license");
+
+        try {
+          VersionTd.textContent = await invoke("get_version", {});
+        } catch (err) {
+          VersionTd.textContent = `Failed to load data: ${err}`;
+        }
+
+        try {
+          AuthorsTd.innerHTML = await invoke("get_authors", {});
+        } catch (err) {
+          AuthorsTd.textContent = `Failed to load data: ${err}`;
+        }
+
+        try {
+          const link = await invoke("get_homepage", {});
+          HomePageTd.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
+        } catch (err) {
+          HomePageTd.textContent = `Failed to load data: ${err}`;
+        }
+
+        try {
+          LicenseTd.textContent = await invoke("get_license", {});
+        } catch (err) {
+          LicenseTd.textContent = `Failed to load data: ${err}`;
+        }
+      });
+    </script>
+
+    <br>
     <license-tag>
       <!-- Licenses.html will be inserted here -->
     </license-tag>
 
     <script type="module">
-      const { invoke } = window.__TAURI__.core;
-
       class LicenseTag extends HTMLElement {
         constructor() {
           super();
@@ -33,6 +95,7 @@
             this.shadowRoot.adoptedStyleSheets = [sheet];
 
             /* ライセンスHTMLを取得して挿入 */
+            const { invoke } = window.__TAURI__.core;
             const html = await invoke("get_license_html", {});
             const container = this.shadowRoot.getElementById("license-content");
             container.innerHTML = html;

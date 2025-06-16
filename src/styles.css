@@ -206,14 +206,39 @@ iframe#page-frame {
 }
 
 /* about.html */
+.product-info-table {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  align-items: center;
+}
+
+.product-info-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2em;
+}
+.product-info-table tr {
+  border-bottom: 1px solid #c0c0c0c0;
+}
+.product-info-table tr td {
+  padding: 8px;
+  vertical-align: top;
+}
+.product-info-table tr td a {
+  color: #77bfb5;
+}
+.intro {
+  text-align: center;
+}
+
+
 #license-content {
   max-width: 800px;
   margin: 0 auto;
   padding-left: 5vw;
   padding-right: 5vw;
-}
-.intro {
-  text-align: center;
 }
 .license {
   max-height: 100vw;
@@ -232,6 +257,7 @@ iframe#page-frame {
 }
 .license-used-by {
   margin-top: -10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 .license-text {
   flex-grow: 1;
@@ -242,6 +268,7 @@ iframe#page-frame {
   max-height: 40vw;
   flex-shrink: 1;
   overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 ul.licenses-overview li,
 ul.license-used-by li {
