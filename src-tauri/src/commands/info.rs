@@ -23,3 +23,7 @@ pub fn get_version() -> String {
     env!("CARGO_PKG_VERSION").to_string()
 }
 
+#[tauri::command]
+pub fn get_rustversion() -> String {
+    env!("RUSTC_VERSION").to_string()
+}

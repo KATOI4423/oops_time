@@ -1,6 +1,7 @@
 use std::env;
 use std::fs;
 use std::path::Path;
+use std::process::Command;
 
 fn make_aumid_rs()
 {
@@ -52,8 +53,21 @@ fn make_license_rs()
     fs::write(&dest_path, contents).expect("Failed to write license.rs");
 }
 
+fn make_ructc_version_rs()
+{
+    let output = Command::new("rustc")
+        .arg("--version")
+        .output()
+        .expect("Failed to get rustc vesion");
+
+    let version = String::from_utf8_lossy(&output.stdout).trim().to_string();
+
+    println!("cargo:rustc-env=RUSTC_VERSION={}", version);
+}
+
 fn main() {
 	make_aumid_rs();
     make_license_rs();
+    make_ructc_version_rs();
     tauri_build::build()
 }

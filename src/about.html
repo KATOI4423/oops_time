@@ -28,6 +28,10 @@
           <td id="homepage">Loading...</td>
         </tr>
         <tr>
+          <td>Rust version</td>
+          <td id="rust-verison">Loading...</td>
+        </tr>
+        <tr>
           <td>License</td>
           <td id="license">Loading...</td>
         </tr>
@@ -42,6 +46,7 @@
         const VersionTd   = document.getElementById("version");
         const AuthorsTd   = document.getElementById("author");
         const HomePageTd  = document.getElementById("homepage");
+        const RustVerTd   = document.getElementById("rust-verison");
         const LicenseTd   = document.getElementById("license");
 
         try {
@@ -61,6 +66,12 @@
           HomePageTd.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
         } catch (err) {
           HomePageTd.textContent = `Failed to load data: ${err}`;
+        }
+
+        try {
+          RustVerTd.textContent = await invoke("get_rustversion", {});
+        } catch (err) {
+          RustVerTd.textContent = `Failed to load data: ${err}`;
         }
 
         try {
