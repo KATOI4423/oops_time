@@ -3,7 +3,7 @@ use std::fs;
 use std::path::Path;
 use std::process::Command;
 
-fn make_aumid_rs()
+fn make_aumid_env()
 {
 	let metadata = cargo_metadata::MetadataCommand::new()
 		.no_deps()
@@ -13,12 +13,10 @@ fn make_aumid_rs()
 	let aumid = metadata
 		.root_package()
 		.and_then(|pkg| pkg.metadata.get("aumid").and_then(|v| v.as_str()))
-		.expect("aumid not found in Cargo.toml");
+		.expect("aumid not found in Cargo.toml")
+        .to_string();
 
-	let out_dir = env::var("OUT_DIR").unwrap();
-	let dest_path = format!("{}/aumid.rs", out_dir);
-	fs::write(dest_path, format!("pub const AUMID : &str = \"{}\";", aumid))
-		.expect("Failed to write AUMID file");
+    println!("cargo:rustc-env=AUMID={}", aumid);
 }
 
 fn extract_main_content(html: &str) -> Option<String> {
@@ -53,7 +51,7 @@ fn make_license_rs()
     fs::write(&dest_path, contents).expect("Failed to write license.rs");
 }
 
-fn make_ructc_version_rs()
+fn make_ructc_version_env()
 {
     let output = Command::new("rustc")
         .arg("--version")
@@ -66,8 +64,8 @@ fn make_ructc_version_rs()
 }
 
 fn main() {
-	make_aumid_rs();
+	make_aumid_env();
     make_license_rs();
-    make_ructc_version_rs();
+    make_ructc_version_env();
     tauri_build::build()
 }
