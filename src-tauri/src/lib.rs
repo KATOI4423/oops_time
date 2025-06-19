@@ -38,6 +38,11 @@ pub fn run() {
             license::get_license_html,
             info::get_authors, info::get_homepage, info::get_license, info::get_version,
             info::get_rustversion,
+            utils::setting::save_config,
+            utils::setting::get_threshold, utils::setting::set_threshold,
+            utils::setting::get_count, utils::setting::set_count,
+            utils::setting::get_interval, utils::setting::set_interval,
+            utils::setting::get_afterallow,  utils::setting::set_afterallow,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

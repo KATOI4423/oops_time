@@ -178,7 +178,7 @@ impl KeyHistory {
                         || prev1.code == vk_left =>
                 {
                     debug!("Detect BackSpace after allow key");
-                    if setting::MisstypeConfig::get_afterallow() {
+                    if setting::get_afterallow() {
                         // 矢印キーの後をミスタイプとする設定が有効の場合のみカウント
                         self.misstype_cnt.fetch_add(1, Ordering::Relaxed);
                         self.add_key(input_key);
@@ -312,9 +312,9 @@ fn mistype_rate_monitor_daemon() {
     //! 一定時間ごとにミスタイプ率を取得し、ミスタイプ率が閾値を超えると通知を送信する
     loop {
         // 設定が変更された場合でも即座に反映されるように、loopの中で値を取得する
-        let interval = setting::MisstypeConfig::get_interval();
-        let threshold = setting::MisstypeConfig::get_threshold();
-        let count = setting::MisstypeConfig::get_count();
+        let interval = setting::get_interval();
+        let threshold = setting::get_threshold();
+        let count = setting::get_count();
         let thres_cnt = (threshold * count as f64).floor() as usize;
         let mistype_cnt = get_recent_mistype_cnt();
         debug!(
@@ -348,7 +348,7 @@ pub fn init_keyhook() {
     });
 
     HISTORY
-        .set(KeyHistory::new(setting::MisstypeConfig::get_count()))
+        .set(KeyHistory::new(setting::get_count()))
         .unwrap_or_else(|_| {
             error!("Failed to initialize keyboard input history");
             panic!("Failed to initialize keyboard input history");
