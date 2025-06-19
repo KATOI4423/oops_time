@@ -5,10 +5,103 @@
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Setting</title>
-    <script type="module" src="/main.js" defer></script>
   </head>
 
   <body>
-    <h1>setting.html</h1>
+    <h1>Product Setting</h1>
+
+    <div class="setting-container">
+      <table class="setting-table">
+        <tr>
+          <td>Threshold [%]</td>
+          <td>
+            <input type="number" id="threshold" min="0" max="100" step="0.1" placeholder="10.0">
+          </td>
+        </tr>
+        <tr>
+          <td>Count</td>
+          <td>
+            <input type="number" id="count" min="100" max="500" step="10" placeholder="100">
+          </td>
+        </tr>
+        <tr>
+          <td>Inverval [min]</td>
+          <td>
+            <input type="number" id="interval" min="1" max="60" step="1" placeholder="5">
+          </td>
+        </tr>
+        <tr>
+          <td>After allow key</td>
+          <td>
+            <label>
+              <input type="radio" name="afterallow-toggle" value="true" id="afterallow-toggle-enable" checked>Enable
+            </label>
+            <label style="margin-left: 1em;">
+              <input type="radio" name="afterallow-toggle" value="false" id="afterallow-toggle-disable">Disable
+            </label>
+          </td>
+        </tr>
+      </table>
+      <button id="save-button">Save</button>
+      <p id="save-status" style="color: limegreen;"></p>
+    </div>
+
+    <script type="module">
+      const { invoke } = window.__TAURI__.core;
+
+      const thresholdBtn = document.getElementById("threshold");
+      const countBtn = document.getElementById("count");
+      const intervalBtn = document.getElementById("interval");
+      const status = document.getElementById("save-status");
+
+      // 設定ページの初期値をgetメソッドで取得する
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const threshold = await invoke("get_threshold", {});
+          thresholdBtn.value = (threshold * 100).toFixed(1); // 0 <= threshold <= 1 になっている
+
+          const count = await invoke("get_count", {});
+          countBtn.value = count;
+
+          const interval = await invoke("get_interval", {});
+          intervalBtn.value = interval;
+
+          const afterallow = await invoke("get_afterallow", {});
+          const afterallowEnable = document.getElementById("afterallow-toggle-enable");
+          const afterallowDisable = document.getElementById("afterallow-toggle-disable");
+          if (afterallow == true) {
+            afterallowEnable.checked = true;
+            afterallowDisable.checked = false;
+          } else {
+            afterallowEnable.checked = false;
+            afterallowDisable.checked = true;
+          }
+        } catch (err) {
+          status.textContent = `Failed to load setting value: ${err}`;
+          status.style.color = "red";
+        }
+      });
+
+      document.getElementById("save-button").addEventListener("click", async () => {
+        const threshold = parseFloat(thresholdBtn.value) / 100;
+        const count = parseInt(countBtn.value);
+        const interval = parseInt(intervalBtn.value);
+        const afterallowSelected = document.querySelector('input[name="afterallow-toggle"]:checked').value === "true"; // 文字列からbool値へ変換する
+
+        try {
+          await invoke("set_threshold", { value: threshold });
+          await invoke("set_count", { value: count });
+          await invoke("set_interval", { value: interval });
+          await invoke("set_afterallow", { value: afterallowSelected });
+
+          await invoke("save_config", {});
+          status.textContent = "Save setting successfully!";
+          status.style.color = "limegreen";
+        } catch (err) {
+          status.textContent = `Failed setting: ${err}`;
+          status.style.color = "red";
+        }
+      });
+    </script>
   </body>
 </html>
