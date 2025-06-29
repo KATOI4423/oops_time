@@ -378,3 +378,9 @@ pub fn init_keyhook() {
         mistype_rate_monitor_daemon();
     });
 }
+
+pub fn change_max_history_size(max_history_size: usize) {
+    let history = HISTORY.get()
+        .expect("HISTORY not initialized");
+    history.change_max_history_size(max_history_size);
+}

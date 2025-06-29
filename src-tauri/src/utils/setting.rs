@@ -12,6 +12,8 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::sync::RwLock;
 
+use crate::utils::keyhook;
+
 fn custom_format(
     w: &mut dyn Write,
     now: &mut flexi_logger::DeferredNow,
@@ -214,9 +216,11 @@ pub fn get_count() -> usize {
 #[tauri::command]
 pub fn set_count(value: usize) {
     //! グローバル変数 `CONFIG` の `count` を更新するメソッド.
+    //! グローバル変数 `HISTORY` の `max_hisotry_size` も更新する.
     //! 外部ファイルへは保存されないため、`save_config` 関数を必ず使用してください.
     let mut cfg = CONFIG.write().expect("CONFIG RwLock poisoned");
     cfg.set_count(value);
+    keyhook::change_max_history_size(value);
 }
 
 #[tauri::command]
